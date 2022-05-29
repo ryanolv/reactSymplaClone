@@ -8,20 +8,7 @@ const headerProps = {
     subtitle: 'Cadastro de eventos: Incluir, Listar, Alterar e Excluir'
 }
 
-const setComponent = (label, valueInput, nameInput, placeholder='', type='text') => {
-    return (
-        <div className="col-12 col-md-6">
-            <div className="form-group">
-                <label>{label}</label>
-                <input type={type} className="form-control"
-                    name={nameInput}
-                    value={valueInput}
-                    onChange={e => this.updateField(e)}
-                    placeholder={placeholder} />
-            </div>
-        </div>
-    )
-}
+
 
 const setSelect = (label, valuesInput) => {
     return (
@@ -40,7 +27,7 @@ const setSelect = (label, valuesInput) => {
     )
 }
 
-const baseUrl = 'http://localhost:3000/users'
+const baseUrl = 'http://localhost:3001/users'
 const initialState = {
     user: { name: '', email: '', event:'', description:'', date:'', category:''},
     list: []
@@ -83,6 +70,20 @@ export default class UserCrud extends Component {
         this.setState({ user })
     }
 
+    setComponent(label, valueInput, nameInput, placeholder='', type='text') {
+    return (
+        <div className="col-12 col-md-6">
+            <div className="form-group">
+                <label>{label}</label>
+                <input type={type} className="form-control"
+                    name={nameInput}
+                    value={valueInput}
+                    onChange={e => this.updateField(e)}
+                    placeholder={placeholder} />
+            </div>
+        </div>
+    )
+}
 
 
     renderForm() {
@@ -91,11 +92,11 @@ export default class UserCrud extends Component {
                 
                 <h5>Insira os dados necessários para efetuar o cadastro:</h5><hr />
                 <div className="row">
-                    {setComponent('Nome do Organizador', this.state.user.name, 'name', 'Digite o nome do organizador')}
-                    {setComponent('E-mail do organizador', this.state.user.email, 'email', 'Digite o email do organizador')}
-                    {setComponent('Titulo do evento', this.state.user.event, 'event', 'Digite o titulo do evento')}
-                    {setComponent('Descricao', this.state.user.description, 'description', 'Detalhe a descrição do evento')}
-                    {setComponent('Data do evento', this.state.user.date, 'date','','date')}
+                    {this.setComponent('Nome do Organizador', this.state.user.name, 'name', 'Digite o nome do organizador')}
+                    {this.setComponent('E-mail do organizador', this.state.user.email, 'email', 'Digite o email do organizador')}
+                    {this.setComponent('Titulo do evento', this.state.user.event, 'event', 'Digite o titulo do evento')}
+                    {this.setComponent('Descricao', this.state.user.description, 'description', 'Detalhe a descrição do evento')}
+                    {this.setComponent('Data do evento', this.state.user.date, 'date','','date')}
                     {setSelect('Selecione a categoria', ['Categoria 1', 'Categoria 2', 'Categoria 3'])}
                 </div>
             <hr />
